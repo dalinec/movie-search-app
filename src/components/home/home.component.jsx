@@ -1,8 +1,10 @@
-import { isFulfilled } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { fetchAsyncMovies } from '../../features/movies/moviesSlice';
+import {
+  fetchAsyncMovies,
+  fetchAsyncShows,
+} from '../../features/movies/moviesSlice';
 
 import MovieListing from '../movie-listing/movie-listing.component';
 
@@ -11,7 +13,8 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchAsyncMovies());
-  }, [isFulfilled]);
+    dispatch(fetchAsyncShows());
+  }, [dispatch]);
 
   return (
     <>
