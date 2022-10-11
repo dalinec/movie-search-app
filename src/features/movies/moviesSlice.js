@@ -27,10 +27,21 @@ export const fetchAsyncShows = createAsyncThunk(
     return data;
   }
 );
+export const fetchAsyncMovieOrShowsDetail = createAsyncThunk(
+  'movies/fetchAsyncMovieOrShowsDetail',
+  async (id) => {
+    const apiKey = process.env.REACT_APP_OMDB_API_KEY;
+
+    const response = await movieApi.get(`?apiKey=${apiKey}&i=${id}$Plot=full`);
+    const data = response.data;
+    return data;
+  }
+);
 
 const initialState = {
   movies: {},
   shows: {},
+  selectedMoveOrShow: {},
 };
 
 const movieSlice = createSlice({
@@ -52,6 +63,10 @@ const movieSlice = createSlice({
     [fetchAsyncShows.fulfilled]: (state, { payload }) => {
       console.log('Fetched Successfully');
       return { ...state, shows: payload };
+    },
+    [fetchAsyncMovieOrShowsDetail.fulfilled]: (state, { payload }) => {
+      console.log('Fetched Successfully');
+      return { ...state, selectedMoveOrShow: payload };
     },
     [fetchAsyncMovies.rejected]: () => {
       console.log('Rejected');
