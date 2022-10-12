@@ -32,7 +32,7 @@ export const fetchAsyncMovieOrShowsDetail = createAsyncThunk(
   async (id) => {
     const apiKey = process.env.REACT_APP_OMDB_API_KEY;
 
-    const response = await movieApi.get(`?apiKey=${apiKey}&i=${id}$Plot=full`);
+    const response = await movieApi.get(`?apiKey=${apiKey}&i=${id}&Plot=full`);
     const data = response.data;
     return data;
   }
@@ -76,5 +76,7 @@ const movieSlice = createSlice({
 
 export const { addMovies } = movieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies; //state, name of reducer, propname
-export const getAllShows = (state) => state.movies.shows; //state, name of reducer, propname
+export const getAllShows = (state) => state.movies.shows;
+export const getSelectedMovieOrShow = (state) =>
+  state.movies.selectedMoveOrShow;
 export default movieSlice.reducer;

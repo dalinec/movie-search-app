@@ -5,7 +5,7 @@ import './movie-card.style.scss';
 const MovieCard = ({ data }) => {
   return (
     <div className='card-item'>
-      <Link to={`/movie/:${data.imdbID}`}>
+      <Link to={`/movie/${data.imdbID}`}>
         <div className='card-inner'>
           <div className='card-top'>
             <img src={data.Poster} alt={data.Title} />
