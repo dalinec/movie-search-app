@@ -22,3 +22,9 @@ html {
 .container {
   margin: 0 40px;
 }
+
+@media (min-width: 375px) and (max-width: 425px) {
+  .container {
+    margin: 0 20px;
+  }
+}
