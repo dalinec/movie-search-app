@@ -5,8 +5,6 @@ import { APIKey } from '../../common/apis/MovieApiKey';
 export const fetchAsyncMovies = createAsyncThunk(
   'movies/fetchAsyncMovies',
   async (term) => {
-    // const apiKey = process.env.REACT_APP_OMDB_API_KEY;
-
     const response = await movieApi.get(
       `?apiKey=${APIKey}&s=${term}&type=movie`
     );
@@ -17,8 +15,6 @@ export const fetchAsyncMovies = createAsyncThunk(
 export const fetchAsyncShows = createAsyncThunk(
   'movies/fetchAsyncShows',
   async (term) => {
-    // const apiKey = process.env.REACT_APP_OMDB_API_KEY;
-
     const response = await movieApi.get(
       `?apiKey=${APIKey}&s=${term}&type=series`
     );

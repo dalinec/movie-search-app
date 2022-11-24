@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   fetchAsyncMovies,
   fetchAsyncShows,
@@ -12,12 +12,20 @@ import './header.style.scss';
 const Header = () => {
   const [term, setTerm] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(fetchAsyncMovies('Harry'));
+    dispatch(fetchAsyncShows('Dog'));
+  }, [dispatch]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (term === '') return alert('Please enter a search term!');
     dispatch(fetchAsyncMovies(term));
     dispatch(fetchAsyncShows(term));
     setTerm('');
+    navigate('/');
   };
 
   return (
